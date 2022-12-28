@@ -41,7 +41,7 @@ variable "privtsub" {
   description = "number of privt subnets"
 }
 
-variable "pubsub" {
+variable "igwname" {
   default   = " test-igw"
   description = "internet gateway name"
 }
