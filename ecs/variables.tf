@@ -29,6 +29,24 @@ variable "app_count" {
   description = "numer of docker containers to run"
 }
 
+variable "pubsub" {
+  type  = list
+  default   = ["pub-1" , "pub-2" ]
+  description = "number of pub subnets"
+}
+
+variable "privtsub" {
+  type  = list
+  default   = ["privt-1" , "privt-2" ]
+  description = "number of privt subnets"
+}
+
+variable "pubsub" {
+  default   = " test-igw"
+  description = "internet gateway name"
+}
+
+
 variable "health_check_path" {
   default = "/"
 }
