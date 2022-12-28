@@ -7,3 +7,13 @@ provider "aws" {
   shared_credentials_file = "$HOME/.aws/credentials"
   
 }
+
+
+terraform {
+  backend "s3" {
+    bucket = "terraformecs2022"
+    key    = "ecs/terraform.tfstate"
+    region = "us-east-1"
+  }
+}
+
