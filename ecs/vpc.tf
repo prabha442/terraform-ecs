@@ -1,7 +1,7 @@
 # network.tf
 
 resource "aws_vpc" "test-vpc" {
-  cidr_block = "172.16.0.0/16"
+  cidr_block = "10.0.0.0/16"
   
   tags = {
     Name = " test-vpc"
@@ -19,6 +19,10 @@ resource "aws_subnet" "private" {
   cidr_block        = cidrsubnet(aws_vpc.test-vpc.cidr_block, 8, count.index)
   availability_zone = data.aws_availability_zones.available.names[count.index]
   vpc_id            = aws_vpc.test-vpc.id
+  
+  tags = {
+    Name = var.privtsub[count.index]
+  }
 }
 
 # Create var.az_count public subnets, each in a different AZ
@@ -28,11 +32,19 @@ resource "aws_subnet" "public" {
   availability_zone       = data.aws_availability_zones.available.names[count.index]
   vpc_id                  = aws_vpc.test-vpc.id
   map_public_ip_on_launch = true
+
+  tags = {
+    Name = var.pubsub[count.index]
+  }
 }
 
 # Internet Gateway for the public subnet
 resource "aws_internet_gateway" "test-igw" {
   vpc_id = aws_vpc.test-vpc.id
+  
+  tags = {
+    Name = var.igwname
+  }
 }
 
 # Route the public subnet traffic through the IGW
