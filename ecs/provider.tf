@@ -4,7 +4,7 @@ provider "aws" {
   
  #if you are running from AWS linux instance please use bellow credentials section
   region     = var.aws_region
-  shared_credentials_file = "$HOME/.aws/credentials"
+  shared_credentials_files = ["$HOME/.aws/credentials"]
   
 }
 
