@@ -74,13 +74,13 @@ resource "aws_nat_gateway" "test-natgw" {
 
 # Create a new route table for the private subnets, make it route non-local traffic through the NAT gateway to the internet
 resource "aws_route_table" "private" {
-  #count  = length(var.private_subnets)
+  count  = length(var.private_subnets)
   vpc_id = aws_vpc.test-vpc.id
 
   route {
     cidr_block     = "0.0.0.0/0"
-    #nat_gateway_id = element(aws_nat_gateway.test-natgw.*.id, count.index)
-    nat_gateway_id = aws_nat_gateway.test-natgw.*.id
+    nat_gateway_id = element(aws_nat_gateway.test-natgw.*.id, count.index)
+    #nat_gateway_id = aws_nat_gateway.test-natgw.*.id
   
   }
   
