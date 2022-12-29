@@ -6,7 +6,7 @@ variable "aws_region" {
 
 
 variable "ecs_task_execution_role" {
-  default     = "myECcsTaskExecutionRole"
+  default     = "myEcsTaskExecutionRole"
   description = "ECS task execution role name"
 }
 
