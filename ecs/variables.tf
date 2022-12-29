@@ -16,19 +16,25 @@ variable "ecs_task_execution_role" {
 
 variable "app_name" {
   type        = string
+  default     = "node-js-app"
   description = "Application Name"
 }
 
 variable "app_environment" {
   type        = string
+  default     = "preprod"
   description = "Application Environment"
 }
 
 variable "public_subnets" {
+  type        = list
+  default     = ["10.10.100.0/24", "10.10.101.0/24"]
   description = "List of public subnets"
 }
 
 variable "private_subnets" {
+  type        = list
+  default     = ["10.10.0.0/24", "10.10.1.0/24"]
   description = "List of private subnets"
 }
 
