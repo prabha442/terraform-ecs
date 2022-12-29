@@ -1,10 +1,11 @@
 # network.tf
 
 resource "aws_vpc" "test-vpc" {
-  cidr_block = "10.0.0.0/16"
+  cidr_block = "10.10.0.0/16"
   
-  tags = {
-    Name = " test-vpc"
+   tags = {
+    Name        = "${var.app_name}-vpc"
+    Environment = var.app_environment
   }
 }
 
