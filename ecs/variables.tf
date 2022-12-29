@@ -14,6 +14,24 @@ variable "ecs_task_execution_role" {
   description = "ECS task execution role name"
 }
 
+variable "app_name" {
+  type        = string
+  description = "Application Name"
+}
+
+variable "app_environment" {
+  type        = string
+  description = "Application Environment"
+}
+
+variable "public_subnets" {
+  description = "List of public subnets"
+}
+
+variable "private_subnets" {
+  description = "List of private subnets"
+}
+
 variable "app_image" {
   default     = "357435718345.dkr.ecr.us-east-1.amazonaws.com/test2022"
   description = "docker image to run in this ECS cluster"
@@ -28,24 +46,6 @@ variable "app_count" {
   default     = "2" #choose 2 bcz i have choosen 2 AZ
   description = "numer of docker containers to run"
 }
-
-variable "pubsub" {
-  type  = list
-  default   = ["pub-1" , "pub-2" ]
-  description = "number of pub subnets"
-}
-
-variable "privtsub" {
-  type  = list
-  default   = ["privt-1" , "privt-2" ]
-  description = "number of privt subnets"
-}
-
-variable "igwname" {
-  default   = " test-igw"
-  description = "internet gateway name"
-}
-
 
 variable "health_check_path" {
   default = "/"
