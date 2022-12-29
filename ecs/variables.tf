@@ -43,6 +43,12 @@ variable "app_image" {
   description = "docker image to run in this ECS cluster"
 }
 
+variable "availability_zones" {
+  type        = list
+  default     = ["us-east-1a", "us-east-1b"]
+  description = "List of availability zones"
+}
+
 variable "app_port" {
   default     = "80"
   description = "portexposed on the docker image"
