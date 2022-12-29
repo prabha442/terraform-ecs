@@ -21,7 +21,8 @@ resource "aws_subnet" "private" {
   vpc_id            = aws_vpc.test-vpc.id
   
   tags = {
-    Name = var.privtsub[count.index]
+    Name        = "${var.app_name}-private-subnet-${count.index + 1}"
+    Environment = var.app_environment
   }
 }
 
@@ -34,7 +35,8 @@ resource "aws_subnet" "public" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name = var.pubsub[count.index]
+    Name        = "${var.app_name}-public-subnet-${count.index + 1}"
+    Environment = var.app_environment
   }
 }
 
@@ -43,8 +45,10 @@ resource "aws_internet_gateway" "test-igw" {
   vpc_id = aws_vpc.test-vpc.id
   
   tags = {
-    Name = var.igwname
+    Name        = "${var.app_name}-igw"
+    Environment = var.app_environment
   }
+
 }
 
 # Route the public subnet traffic through the IGW
@@ -75,6 +79,11 @@ resource "aws_route_table" "private" {
   route {
     cidr_block     = "0.0.0.0/0"
     nat_gateway_id = element(aws_nat_gateway.test-natgw.*.id, count.index)
+  }
+  
+  tags = {
+    Name        = "${var.app_name}-routing-table-private"
+    Environment = var.app_environment
   }
 }
 
