@@ -11,7 +11,7 @@ provider "aws" {
 
 terraform {
   backend "s3" {
-    bucket = "terraformecs2022"
+    bucket = "ecsbucket2022"
     key    = "ecs/terraform.tfstate"
     region = "us-east-1"
   }
