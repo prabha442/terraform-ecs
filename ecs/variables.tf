@@ -12,13 +12,13 @@ variable "ecs_task_execution_role" {
 
 variable "app_name" {
   type        = string
-  default     = "node-js-app"
+  default     = "sample-app"
   description = "Application Name"
 }
 
 variable "app_environment" {
   type        = string
-  default     = "preprod"
+  default     = "pre-prod"
   description = "Application Environment"
 }
 
@@ -35,7 +35,7 @@ variable "private_subnets" {
 }
 
 variable "app_image" {
-  default     = "357435718345.dkr.ecr.us-east-1.amazonaws.com/test2022"
+  default     = "357435718345.dkr.ecr.us-east-1.amazonaws.com/sampleapp:latest"
   description = "docker image to run in this ECS cluster"
 }
 
